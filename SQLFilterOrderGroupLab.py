@@ -25,7 +25,7 @@
 # 
 # Table Name: planets
 
-# In[32]:
+# In[118]:
 
 
 # CodeGrade step0
@@ -46,19 +46,21 @@ pd.read_sql("""SELECT * FROM planets; """, conn1)
 # ### Step 1
 # Return all the columns for planets that have 0 moons.
 
-# In[33]:
+# In[119]:
 
 
 # CodeGrade step1
 # Replace None with your code
-df_no_moons = pd.read_sql("""SELECT name FROM planets WHERE num_of_moons =0;""",conn1)
+df_no_moons = pd.read_sql("""
+    SELECT * FROM planets WHERE num_of_moons = 0;
+""", conn1)
 df_no_moons
 
 
 # ### Step 2
 # Return the name and mass of each planet that has a name with exactly 7 letters. Avoid hard coding this filter subset as much as possible.
 
-# In[34]:
+# In[120]:
 
 
 # CodeGrade step2
@@ -75,7 +77,7 @@ df_name_seven
 # 
 # Return the name and mass for each planet that has a mass that is less than or equal to 1.00.
 
-# In[35]:
+# In[121]:
 
 
 # CodeGrade step3
@@ -89,7 +91,7 @@ df_mass
 # 
 # Return all the columns for planets that have at least one moon and a mass less than 1.00.
 
-# In[36]:
+# In[122]:
 
 
 # CodeGrade step4
@@ -104,12 +106,16 @@ df_mass_moon
 # 
 # Return the name and color of planets that have a color containing the string "blue".
 
-# In[37]:
+# In[123]:
 
 
 # CodeGrade step5
 # Replace None with your code
-df_blue = pd.read_sql("""SELECT * FROM planets WHERE color LIKE '%blue%';""",conn1)
+df_blue = pd.read_sql("""
+    SELECT name, color 
+    FROM planets 
+    WHERE color LIKE '%blue%';
+""", conn1)
 df_blue
 
 
@@ -119,7 +125,7 @@ df_blue
 # 
 # Table Name: dogs
 
-# In[38]:
+# In[124]:
 
 
 # CodeGrade step0
@@ -137,7 +143,7 @@ pd.read_sql("SELECT * FROM dogs;", conn2)
 # ### Step 6
 # Return the name, age, and breed of all dogs that are hungry (binary flag of 1) and sort them from youngest to oldest.
 
-# In[39]:
+# In[125]:
 
 
 # CodeGrade step6
@@ -152,12 +158,17 @@ df_hungry
 # ### Step 7
 # Return the name, age, and hungry columns for hungry dogs between the ages of two and seven. This query should also sort these dogs in alphabetical order.
 
-# In[40]:
+# In[126]:
 
 
 # CodeGrade step7
 # Replace None with your code
-df_hungry_ages = pd.read_sql("""SELECT name,age,hungry FROM dogs WHERE age >=2 and age <=7 ORDER BY name;""" ,conn2)
+df_hungry_ages = pd.read_sql("""
+    SELECT name, age, hungry 
+    FROM dogs 
+    WHERE hungry = 1 AND age >= 2 AND age <= 7 
+    ORDER BY name;
+""", conn2)
 df_hungry_ages
 
 
@@ -165,7 +176,7 @@ df_hungry_ages
 # 
 # Return the name, age, and breed for the 4 oldest dogs. Sort the result alphabetically based on the breed.
 
-# In[41]:
+# In[127]:
 
 
 # CodeGrade step8
@@ -189,7 +200,7 @@ df_4_oldest
 # 
 # Table Name: babe_ruth_stats
 
-# In[42]:
+# In[128]:
 
 
 # CodeGrade step0
@@ -209,7 +220,7 @@ SELECT * FROM babe_ruth_stats; """, conn3)
 # 
 # Return the total number of years that Babe Ruth played professional baseball
 
-# In[43]:
+# In[129]:
 
 
 # CodeGrade step9
@@ -223,7 +234,7 @@ df_ruth_years
 # 
 # Return the total number of homeruns hit by Babe Ruth during his career.
 
-# In[44]:
+# In[130]:
 
 
 # CodeGrade step10
@@ -239,7 +250,7 @@ df_hr_total
 # 
 # For each team that Babe Ruth has played on, return the team name and the number of years he played on that team, aliased as 'number_years'.
 
-# In[45]:
+# In[131]:
 
 
 # CodeGrade step11
@@ -252,7 +263,7 @@ df_teams_years
 # 
 # For each team that Babe Ruth played on and averged over 200 at bats with, return the team name and average number of at bats, aliased as 'average_at_bats'.
 
-# In[46]:
+# In[132]:
 
 
 # CodeGrade step12
@@ -269,7 +280,7 @@ df_at_bats
 
 # #### Close the connections
 
-# In[47]:
+# In[133]:
 
 
 # Run this cell without changes
